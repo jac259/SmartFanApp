@@ -16,11 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ManualActivity" />
-        <activity android:name=".ScheduleActivity" />
-        <activity android:name=".OneTempActivity" />
-        <activity android:name=".TwoTempActivity" />
-        <activity android:name=".ScheduleEditorActivity"></activity>
+        <activity android:name=".ManualActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ScheduleActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".OneTempActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".TwoTempActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ScheduleEditorActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

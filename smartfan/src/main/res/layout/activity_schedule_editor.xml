@@ -24,7 +24,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnReturn"
         android:columnCount="2"
-        android:rowCount="4">
+        android:rowCount="8">
+        <TextView
+            android:id="@+id/textStartLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/startTime"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:paddingTop="10dp" />
+        <TextView
+            android:id="@+id/textEndLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/endTime"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:paddingTop="10dp" />
         <TextView
             android:id="@+id/textStartTime"
             android:layout_width="wrap_content"
@@ -43,6 +59,14 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:gravity="start" />
+        <TextView
+            android:id="@+id/textSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/speedText"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="2"
+            android:paddingTop="10dp" />
         <SeekBar
             android:id="@+id/seekSpeedSchedule"
             android:layout_width="match_parent"
@@ -51,6 +75,14 @@
             android:layout_rowWeight="1"
             android:layout_columnSpan="2"
             android:paddingTop="10dp"/>
+        <TextView
+            android:id="@+id/textDirection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/directionText"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="2"
+            android:paddingTop="10dp" />
         <RadioGroup
             android:id="@+id/rdoGrpDirection"
             android:layout_rowSpan="1"
@@ -72,6 +104,14 @@
                 android:text="@string/reverse"
                 android:layout_weight="1"/>
         </RadioGroup>
+        <TextView
+            android:id="@+id/textDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/daysText"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="2"
+            android:paddingTop="10dp" />
         <LinearLayout
             android:id="@+id/layoutChkDays"
             android:layout_rowSpan="1"
