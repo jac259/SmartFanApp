@@ -76,6 +76,14 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
             }
         });
 
+        Button btnChangeMode = (Button) findViewById(R.id.btnChangeMode);
+        btnChangeMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setMode();
+            }
+        });
+
         FloatingActionButton btnAddSchedule = (FloatingActionButton) findViewById(R.id.btnAddSchedule);
         btnAddSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -356,6 +364,16 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
                 })
                 .setIcon(icon)
                 .show();
+    }
+
+    private void setMode() {
+
+        String mode = getString(R.string.scheduleMode);
+
+        http = new HttpRequests(this);
+        http.delegate = this;
+        http.onPreExecute(true, mode);
+        http.execute(postOpURL);
     }
 
 }

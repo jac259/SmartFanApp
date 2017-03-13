@@ -11,21 +11,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dt11.student16.smartfan.TwoTempActivity">
 
-    <Button
-        android:id="@+id/btnReturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableStart="@android:drawable/ic_menu_revert"
-        android:drawablePadding="6dp"
-        android:drawableTint="@color/colorPrimary"
-        android:text="@string/returnButton" />
+    <RelativeLayout
+        android:id="@+id/layoutButtonsTop"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableStart="@android:drawable/ic_menu_revert"
+            android:drawablePadding="6dp"
+            android:drawableTint="@color/colorPrimary"
+            android:text="@string/returnButton" />
+
+        <Button
+            android:id="@+id/btnChangeMode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/btnChangeMode"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
 
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="1"
-        android:layout_below="@+id/btnReturn"
+        android:layout_below="@+id/layoutButtonsTop"
         android:layout_above="@+id/layoutButtons"
         android:paddingTop="10dp">
 
@@ -107,11 +119,5 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/btnUpdate" />
-        <Button
-            android:id="@+id/btnChangeMode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btnChangeMode" />
     </LinearLayout>
 </RelativeLayout>

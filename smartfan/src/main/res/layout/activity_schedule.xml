@@ -11,36 +11,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dt11.student16.smartfan.ScheduleActivity">
 
-    <GridLayout
-        android:id="@+id/layoutHeader"
+    <RelativeLayout
+        android:id="@+id/layoutButtonsTop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="1">
+        android:layout_height="50dp">
         <Button
             android:id="@+id/btnReturn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:drawableStart="@android:drawable/ic_menu_revert"
             android:drawablePadding="6dp"
             android:drawableTint="@color/colorPrimary"
-            android:text="@string/returnButton"
-            android:layout_columnSpan="1"/>
-        <!--<Button
+            android:text="@string/returnButton" />
+
+        <Button
+            android:id="@+id/btnChangeMode"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:drawableStart="@drawable/ic_settings_white_24px"
-            android:drawableTint="@color/colorPrimaryLight"
-            android:background="@android:color/transparent"
-            android:layout_columnSpan="1"/>-->
-    </GridLayout>
+            android:layout_height="match_parent"
+            android:text="@string/btnChangeMode"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/listSchedules"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutHeader"
+        android:layout_below="@+id/layoutButtonsTop"
         android:entries="@array/entries_array"
         android:divider="@color/colorDivider"
         android:dividerHeight="1dp"
