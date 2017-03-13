@@ -1,0 +1,166 @@
+<resources>
+    <string name="app_name">Smart Fan</string>
+
+    <!--URL & Requests-->
+    <string name="url">http://130.101.95.110:3000/</string>
+    <string name="getOp">GetOp</string>
+    <string name="postOp">PostOp</string>
+    <string name="getAddress">GetAddress</string>
+    <string name="postAddress">PostAddress</string>
+    <string name="getManual">GetManual</string>
+    <string name="postManual">PostManual</string>
+    <string name="createSchedule">CreateSchedule</string>
+    <string name="deleteSchedule">DeleteSchedule</string>
+    <string name="updateSchedule">UpdateSchedule</string>
+    <string name="toggleSchedule">ToggleSchedule</string>
+    <string name="getCurrentSchedule">GetCurrentSchedule</string>
+    <string name="getSchedule">GetSchedule</string>
+    <string name="getOneTemp">GetOneTemp</string>
+    <string name="postOneTemp">PostOneTemp</string>
+    <string name="getTwoTemp">GetTwoTemp</string>
+    <string name="postTwoTemp">PostTwoTemp</string>
+    <string name="postPower">PostPower</string>
+    <string name="getTemp">GetTemp</string>
+
+    <!--Main Activity-->
+    <string name="tempDisplay">Current temperature:</string>
+    <string name="modeDisplay">Current mode:</string>
+    <string name="modeButtons">Edit parameters:</string>
+    <string name="manualButton">Manual</string>
+    <string name="scheduleButton">Schedule</string>
+    <string name="oneTempButton">One Temp</string>
+    <string name="twoTempButton">Two Temp</string>
+    <string name="returnButton">Return</string>
+
+    <!--Titles-->
+    <string name="manualTitle">Manual Mode</string>
+    <string name="scheduleTitle">Schedule Mode</string>
+    <string name="scheduleEditorTitle">Schedule Editor</string>
+    <string name="oneTempTitle">One Temp Mode</string>
+    <string name="twoTempTitle">Two Temp Mode</string>
+
+    <!--Main Post Params-->
+    <string name="main_power">Power</string>
+    <string name="main_mode">Mode</string>
+    <string name="main_temp">Temp</string>
+
+    <!--Manual Post Params-->
+    <string name="manual_direction">Manual_Direction</string>
+    <string name="manual_fan_speed">Manual_Fan_Speed</string>
+
+    <!--Schedule Post Params-->
+    <string name="schedule_id">Schedule_ID</string>
+    <string name="begin_time">Begin_Time</string>
+    <string name="end_time">End_Time</string>
+    <string name="direction">Direction</string>
+    <string name="fan_speed">Fan_Speed</string>
+    <string name="day">Day</string>
+    <string name="enabled">Enabled</string>
+    <string name="toggle">Toggle</string>
+
+    <!--One Temp Params-->
+    <string name="one_temp_direction">One_Temp_Direction</string>
+    <string name="one_temp_low_speed">One_Temp_Low_Speed</string>
+    <string name="one_temp_low_temp">One_Temp_Low_Temp</string>
+    <string name="one_temp_high_speed">One_Temp_High_Speed</string>
+    <string name="one_temp_high_temp">One_Temp_High_Temp</string>
+
+    <!--Two Temp Params-->
+    <string name="two_temp_low_speed">Two_Temp_Low_Speed</string>
+    <string name="two_temp_low_temp">Two_Temp_Low_Temp</string>
+    <string name="two_temp_high_speed">Two_Temp_High_Speed</string>
+    <string name="two_temp_high_temp">Two_Temp_High_Temp</string>
+
+    <!--Modes-->
+    <string name="mode">Mode</string>
+    <string name="manualMode">Manual</string>
+    <string name="scheduleMode">Schedule</string>
+    <string name="oneTempMode">OneTemp</string>
+    <string name="twoTempMode">TwoTemp</string>
+
+    <!--Fan Directions-->
+    <string name="forward">Forward</string>
+    <string name="backward">Backward</string>
+    <string name="reverse">Reverse</string>
+    <string name="clockwise">Clockwise</string>
+    <string name="counterclockwise">Counterclockwise</string>
+
+    <!--Text-->
+    <string name="directionText">Spin direction:</string>
+    <string name="speedText">Fan speed:</string>
+    <string name="btnUpdate">Update</string>
+    <string name="btnChangeMode">Change Mode</string>
+    <string name="speedRangeText">Speed range:</string>
+    <string name="tempRangeText">Temperature range:</string>
+    <string name="hintLowTemp">Low Temp (°F)</string>
+    <string name="hintHighTemp">High Temp (°F)</string>
+    <string name="btnSave">Save</string>
+    <string name="btnClose">Close</string>
+    <string name="btnCancel">Cancel</string>
+    <string name="btnOkay">Okay</string>
+    <string name="btnEdit">Edit</string>
+    <string name="btnDelete">Delete</string>
+    <string name="btnYes">Yes</string>
+    <string name="btnNo">No</string>
+    <string name="startText">Start</string>
+    <string name="endText">End</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="textTrue">true</string>
+    <string name="textFalse">false</string>
+    <string name="degreesFahr">°F</string>
+    <string name="degreesCels">°C</string>
+
+    <!--Days-->
+    <string name="sundayTwoLetter">Su</string>
+    <string name="mondayTwoLetter">Mo</string>
+    <string name="tuesdayTwoLetter">Tu</string>
+    <string name="wednesdayTwoLetter">We</string>
+    <string name="thursdayTwoLetter">Th</string>
+    <string name="fridayTwoLetter">Fr</string>
+    <string name="saturdayTwoLetter">Sa</string>
+
+    <!--Alerts-->
+    <string name="error">Error</string>
+    <string name="errorStartAfterEnd">The start time must be before the end time.</string>
+    <string name="errorNoDirection">A direction must be chosen.</string>
+    <string name="errorNoDaysSelected">At least one day must be selected.</string>
+    <string name="success">Success</string>
+    <string name="successChangesSaved">Changes saved successfully.</string>
+    <string name="alertDelete">Are you sure you want to delete this schedule?</string>
+    <string name="alertOneOverlap">This schedule overlaps with another. The conflicting schedule
+                                    will be disabled to ensure proper functionality, but it may be
+                                    re-enabled later.</string>
+    <string name="alertTwoOverlap">This schedule overlaps with other schedules. The conflicting
+                                    schedules will be disabled to ensure proper functionality, but
+                                    they may be re-enabled later.</string>
+    <string name="alertOverlap">Schedule overlaps</string>
+    <string name="toastOverlap">Overlapping schedule(s) disabled.</string>
+    <string name="disableSuccess">Disabled Successfully</string>
+    <string name="enableSuccess">Enabled Successfully</string>
+
+    <!--Exceptions-->
+    <string name="exMode">Invalid mode.</string>
+
+    <!--Format-->
+    <string name="timeMilitaryNoSeconds">HH:mm</string>
+
+    <!--Content Descriptions-->
+    <string name="imgBtnPower">Toggle power state of the Smart Fan.</string>
+    <string name="imgBtnRefreshMain">Refresh the current temperature and operation mode.</string>
+
+    <!--Actions-->
+    <string name="actionRefresh">Refresh</string>
+    <string name="actionSettings">Settings</string>
+
+    <!--Miscellaneous-->
+    <string name="hyphen">-</string>
+    <string name="tilde">~</string>
+    <string name="maxId">maxId</string>
+    <string name="edit">edit</string>
+    <string name="daysArray">daysArray</string>
+    <string name="startTimeArray">startTimeArray</string>
+    <string name="endTimeArray">endTimeArray</string>
+    <string name="idArray">idArray</string>
+    <string name="enabledArray">enabledArray</string>
+</resources>
