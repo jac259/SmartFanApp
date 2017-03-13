@@ -187,12 +187,12 @@
         android:id="@+id/layoutButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:gravity="end">
         <Button
             android:id="@+id/btnUpdate"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btnUpdate" />
+            android:text="@string/btnSave" />
     </LinearLayout>
 </RelativeLayout>
