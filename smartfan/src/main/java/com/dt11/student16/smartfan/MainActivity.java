@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             else if (json.has(getString(R.string.main_power)) && json.has(getString(R.string.main_mode))) {
                 ImageButton imgBtnPower = (ImageButton) findViewById(R.id.imgBtnPower);
                 TextView textMode = (TextView) findViewById(R.id.textMode);
+                TextView textRPM = (TextView) findViewById(R.id.textRPM);
 
                 powerState = Boolean.parseBoolean(json.getString(getString(R.string.main_power)));
                 imgBtnPower.setColorFilter(ContextCompat.getColor(context, powerState ? R.color.colorAccent : R.color.colorPrimaryLight));
@@ -199,6 +200,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                     textMode.setText(getString(R.string.twoTempButton));
                 else
                     throw new Exception(getString(R.string.exMode));
+
+                String rpm = json.getString(getString(R.string.RPM));
+                if (rpm.equals("null"))
+                    rpm = "0";
+
+                textRPM.setText(rpm.concat(" RPM"));
             }
         }
         catch (Exception ex) {

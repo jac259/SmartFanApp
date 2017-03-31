@@ -23,8 +23,9 @@
     <string name="getTemp">GetTemp</string>
 
     <!--Main Activity-->
-    <string name="tempDisplay">Current temperature:</string>
-    <string name="modeDisplay">Current mode:</string>
+    <string name="tempDisplay">Temperature:</string>
+    <string name="modeDisplay">Mode:</string>
+    <string name="rpmDisplay">Speed:</string>
     <string name="modeButtons">Edit parameters:</string>
     <string name="manualButton">Manual</string>
     <string name="scheduleButton">Schedule</string>
@@ -47,6 +48,7 @@
     <!--Manual Post Params-->
     <string name="manual_direction">Manual_Direction</string>
     <string name="manual_fan_speed">Manual_Fan_Speed</string>
+    <string name="RPM">RPM</string>
 
     <!--Schedule Post Params-->
     <string name="schedule_id">Schedule_ID</string>
@@ -87,7 +89,8 @@
 
     <!--Text-->
     <string name="directionText">Spin direction:</string>
-    <string name="speedText">Fan speed:</string>
+    <string name="speedText">Set fan speed:</string>
+    <string name="RPMText">Current speed:</string>
     <string name="btnUpdate">Save Changes</string>
     <string name="btnChangeMode">Enable Mode</string>
     <string name="speedRangeText">Speed range:</string>

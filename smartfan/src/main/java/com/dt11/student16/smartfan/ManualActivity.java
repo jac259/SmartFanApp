@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 
+import com.github.anastr.speedviewlib.SpeedView;
+
 import org.json.JSONObject;
 
 import java.util.List;
@@ -45,6 +47,7 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
 
         // Load fields
         getRequest(getURL);
+        getRequest(getOpURL);
 
         // Hook up return button
         Button btnReturn = (Button) findViewById(R.id.btnReturn);
@@ -85,27 +88,54 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
 
     private void parseJSON(String jsonString) {
         JSONObject json;
-        SeekBar oneSpeed = (SeekBar) findViewById(R.id.seekSpeed);
-        RadioButton CW = (RadioButton) findViewById(R.id.rdoCW);
-        RadioButton CCW = (RadioButton) findViewById(R.id.rdoCCW);
 
         try {
             json = (new JSONObject(jsonString)).getJSONObject("data");
 
-            // set direction
-            String direction = json.getString(getString(R.string.manual_direction));
-            if (direction.equals(getString(R.string.clockwise)))
-                CW.setChecked(true);
-            else
-                CCW.setChecked(true);
+            if (json.has(getString(R.string.RPM))) {
+                SpeedView rpmSpeed = (SpeedView) findViewById(R.id.speedView);
 
-            // set speed
-            oneSpeed.setProgress(Math.round(Integer.parseInt(json.getString(getString(R.string.manual_fan_speed)))));
+                json = (new JSONObject(jsonString)).getJSONObject("data");
+
+                // set RPM
+                rpmSpeed.speedTo(Float.parseFloat(json.getString(getString(R.string.RPM))));
+                //seekRPM.setProgress(Math.round(Integer.parseInt(json.getString(getString(R.string.RPM)))));
+            }
+            else {
+                SeekBar oneSpeed = (SeekBar) findViewById(R.id.seekSpeed);
+                RadioButton CW = (RadioButton) findViewById(R.id.rdoCW);
+                RadioButton CCW = (RadioButton) findViewById(R.id.rdoCCW);
+
+                // set direction
+                String direction = json.getString(getString(R.string.manual_direction));
+                if (direction.equals(getString(R.string.clockwise)))
+                    CW.setChecked(true);
+                else
+                    CCW.setChecked(true);
+
+                // set speed
+                oneSpeed.setProgress(Math.round(Integer.parseInt(json.getString(getString(R.string.manual_fan_speed)))));
+            }
+
+
         }
         catch (Exception ex) {
             Log.e(TAG, ex.toString());
         }
 
+    }
+
+    private void moveRPM() {
+//        long startTime = System.currentTimeMillis(); //fetch starting time
+//        int seconds = 5;
+//        while(System.currentTimeMillis() - startTime < seconds*1000)
+//        {
+//            getRequest(getOpURL);
+//            long loopTime = System.currentTimeMillis();
+//            while(System.currentTimeMillis() - loopTime < 1000) {
+//                // request every half second
+//            }
+//        }
     }
 
     private void getRequest(String url) {
