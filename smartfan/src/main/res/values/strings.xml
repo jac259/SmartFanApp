@@ -2,7 +2,7 @@
     <string name="app_name">Smart Fan</string>
 
     <!--URL & Requests-->
-    <string name="url">http://130.101.95.110:3000/</string>
+    <string name="url">http://130.101.95.161:3000/</string>
     <string name="getOp">GetOp</string>
     <string name="postOp">PostOp</string>
     <string name="getAddress">GetAddress</string>
