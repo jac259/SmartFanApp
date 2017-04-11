@@ -22,6 +22,17 @@
     <string name="postPower">PostPower</string>
     <string name="getTemp">GetTemp</string>
 
+    <!--Settings-->
+    <string name="textIP">IP Address:</string>
+    <string name="hintIP">192.168.1.0</string>
+    <string name="textPort">Port Number:</string>
+    <string name="hintPort">100</string>
+
+    <!--Preference Keys-->
+    <string name="PREF_NAME">SmartFanPreferences</string>
+    <string name="PK_IP">PK_IP</string>
+    <string name="PK_Port">PK_Port</string>
+
     <!--Main Activity-->
     <string name="tempDisplay">Temperature:</string>
     <string name="modeDisplay">Mode:</string>

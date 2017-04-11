@@ -1,6 +1,8 @@
 package com.dt11.student16.smartfan;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.edmodo.rangebar.RangeBar;
 
@@ -24,6 +27,8 @@ public class OneTempActivity extends AppCompatActivity implements AsyncResponse 
     private String getOpURL;
     private String postOpURL;
 
+    private SharedPreferences sharedPref;
+
     HttpRequests http;
 
     @Override
@@ -39,11 +44,23 @@ public class OneTempActivity extends AppCompatActivity implements AsyncResponse 
             Log.e(TAG, ex.toString());
         }
 
+        sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+
+        String urlBase = "http://".concat(sharedPref.getString(getString(R.string.PK_IP), "N/A")).concat(":")
+                .concat(sharedPref.getString(getString(R.string.PK_Port), "N/A")).concat("/");
+
+        if(urlBase.contains("N/A"))
+            Toast.makeText(this, "Please enter an IP address and port number via the Settings menu.", Toast.LENGTH_LONG).show();
+
         // Load URLs
-        getURL = getString(R.string.url).concat(getString(R.string.getOneTemp));
-        postURL = getString(R.string.url).concat(getString(R.string.postOneTemp));
-        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
+        getURL = urlBase.concat(getString(R.string.getOneTemp));
+        postURL = urlBase.concat(getString(R.string.postOneTemp));
+        getOpURL = urlBase.concat(getString(R.string.getOp));
+        postOpURL = urlBase.concat(getString(R.string.postOp));
+//        getURL = getString(R.string.url).concat(getString(R.string.getOneTemp));
+//        postURL = getString(R.string.url).concat(getString(R.string.postOneTemp));
+//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
+//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
 
         // Load fields
         getRequest(getURL);

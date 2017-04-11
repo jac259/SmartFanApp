@@ -3,6 +3,7 @@ package com.dt11.student16.smartfan;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     private String getTempURL;
     private String postPowerURL;
 
+    private SharedPreferences sharedPref;
+
     HttpRequests http;
 
     boolean powerState;
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         switch (item.getItemId()) {
             case R.id.actionSettings:
                 // User chose the "Settings" item, show the app settings UI...
+                launchSettings();
                 return true;
 
             case R.id.actionRefresh:
@@ -71,9 +76,21 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-        getTempURL = getString(R.string.url).concat(getString(R.string.getTemp));
-        postPowerURL = getString(R.string.url).concat(getString(R.string.postPower));
+//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
+//        getTempURL = getString(R.string.url).concat(getString(R.string.getTemp));
+//        postPowerURL = getString(R.string.url).concat(getString(R.string.postPower));
+
+        sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+
+        String urlBase = "http://".concat(sharedPref.getString(getString(R.string.PK_IP), "N/A")).concat(":")
+                .concat(sharedPref.getString(getString(R.string.PK_Port), "N/A")).concat("/");
+
+        if(urlBase.contains("N/A"))
+            Toast.makeText(this, "Please enter an IP address and port number via the Settings menu.", Toast.LENGTH_LONG).show();
+
+        getOpURL = urlBase.concat(getString(R.string.getOp));
+        getTempURL = urlBase.concat(getString(R.string.getTemp));
+        postPowerURL = urlBase.concat(getString(R.string.postPower));
 
         getRequest(getOpURL);
         getRequest(getTempURL);
@@ -138,6 +155,11 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
     @Override
     public void processFinish(List<String> result) { parseJSON(result.get(result.size()-1)); }
+
+    private void launchSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 
     private void launchManual() {
         Intent intent = new Intent(this, ManualActivity.class);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
@@ -25,6 +26,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -54,6 +56,8 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
     private Activity activity;
     private RelativeLayout layout;
     private PopupWindow popupWindow;
+
+    SharedPreferences sharedPref;
 
     private int maxId = 0;
 
@@ -92,12 +96,27 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
             }
         });
 
-        createURL = getString(R.string.url).concat(getString(R.string.createSchedule));
-        deleteURL = getString(R.string.url).concat(getString(R.string.deleteSchedule));
-        getURL = getString(R.string.url).concat(getString(R.string.getSchedule));
-        toggleURL = getString(R.string.url).concat(getString(R.string.toggleSchedule));
-        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
+        sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+
+        String urlBase = "http://".concat(sharedPref.getString(getString(R.string.PK_IP), "N/A")).concat(":")
+                .concat(sharedPref.getString(getString(R.string.PK_Port), "N/A")).concat("/");
+
+        if(urlBase.contains("N/A"))
+            Toast.makeText(this, "Please enter an IP address and port number via the Settings menu.", Toast.LENGTH_LONG).show();
+
+        createURL = urlBase.concat(getString(R.string.createSchedule));
+        deleteURL = urlBase.concat(getString(R.string.deleteSchedule));
+        getURL = urlBase.concat(getString(R.string.getSchedule));
+        toggleURL = urlBase.concat(getString(R.string.toggleSchedule));
+        getOpURL = urlBase.concat(getString(R.string.getOp));
+        postOpURL = urlBase.concat(getString(R.string.postOp));
+
+//        createURL = getString(R.string.url).concat(getString(R.string.createSchedule));
+//        deleteURL = getString(R.string.url).concat(getString(R.string.deleteSchedule));
+//        getURL = getString(R.string.url).concat(getString(R.string.getSchedule));
+//        toggleURL = getString(R.string.url).concat(getString(R.string.toggleSchedule));
+//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
+//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
 
         getRequest(getURL);
 

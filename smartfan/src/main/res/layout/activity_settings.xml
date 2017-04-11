@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_schedule"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.dt11.student16.smartfan.ScheduleActivity">
+
+    <RelativeLayout
+        android:id="@+id/layoutButtonsTop"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableStart="@android:drawable/ic_menu_revert"
+            android:drawablePadding="6dp"
+            android:drawableTint="@color/colorPrimary"
+            android:text="@string/returnButton" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutIP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutButtonsTop"
+        android:paddingTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textIP"
+            android:textSize="@dimen/standard_text_size"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutEditIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutIP">
+        <EditText
+            android:id="@+id/textIP"
+            android:hint="@string/hintIP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutPort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutEditIP"
+        android:paddingTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textPort"
+            android:textSize="@dimen/standard_text_size"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutEditPort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutPort">
+        <EditText
+            android:id="@+id/textPort"
+            android:hint="@string/hintPort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="end">
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnSave" />
+    </LinearLayout>
+
+</RelativeLayout>
