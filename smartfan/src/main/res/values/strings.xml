@@ -3,6 +3,7 @@
 
     <!--URL & Requests-->
     <string name="url">http://130.101.95.161:3000/</string>
+    <string name="responseCode">Response code: </string>
     <string name="getOp">GetOp</string>
     <string name="postOp">PostOp</string>
     <string name="getAddress">GetAddress</string>
@@ -153,6 +154,8 @@
     <string name="alertTwoOverlap">This schedule overlaps with other schedules. The conflicting
                                     schedules will be disabled to ensure proper functionality, but
                                     they may be re-enabled later.</string>
+    <string name="connectFailMessage">Connection failed. Please check your Internet connections and
+                                        try again.</string>
     <string name="alertOverlap">Schedule overlaps</string>
     <string name="toastOverlap">Overlapping schedule(s) disabled.</string>
     <string name="disableSuccess">Disabled Successfully</string>

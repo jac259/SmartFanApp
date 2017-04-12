@@ -5,16 +5,21 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import static junit.framework.Assert.assertEquals;
 
 public class HttpRequests extends AsyncTask<String, Void, List<String>> {
 
@@ -139,7 +144,11 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
+        if(!checkConnection(url)) {
+            results.add(r.getString(R.string.responseCode) + Integer.toString(-1));
+            return;
+        }
+        con.setConnectTimeout(5000);
         // optional default is GET
         con.setRequestMethod("GET");
 
@@ -167,10 +176,50 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
 
     }
 
+    public static Integer tryParseInt(String text) {
+        if (text == null)
+            return null;
+
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    public static boolean checkResponseCode(List<String> results) {
+        int responseCode = -1;
+        for (String string : results)
+            if(string.contains("Response code:"))
+                responseCode = tryParseInt(string.substring(15));
+
+        return responseCode == 200;
+    }
+
+    public boolean checkConnection(String strURL) {
+        try {
+            URL url = new URL(strURL);
+            HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
+            urlConn.setConnectTimeout(2000); //set timeout to 5 seconds
+            urlConn.connect();
+
+            assertEquals(HttpURLConnection.HTTP_OK, urlConn.getResponseCode());
+            return true;
+        } catch (SocketTimeoutException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     private void sendPost(String url, List<Pair<String,String>> params, List<String> results) throws Exception {
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        if(!checkConnection(url)) {
+            results.add(r.getString(R.string.responseCode) + Integer.toString(con.getResponseCode()));
+            return;
+        }
 
         // add request header
         con.setRequestMethod("POST");

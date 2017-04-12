@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.github.anastr.speedviewlib.SpeedView;
 
@@ -84,7 +85,12 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     @Override
-    public void processFinish(List<String> result) { parseJSON(result.get(result.size()-1)); }
+    public void processFinish(List<String> result) {
+        if(HttpRequests.checkResponseCode(result))
+            parseJSON(result.get(result.size()-1));
+        else
+            Toast.makeText(this, getString(R.string.connectFailMessage), Toast.LENGTH_LONG).show();
+    }
 
     private void parseJSON(String jsonString) {
         JSONObject json;

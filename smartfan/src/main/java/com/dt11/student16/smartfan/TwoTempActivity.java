@@ -101,7 +101,10 @@ public class TwoTempActivity extends AppCompatActivity implements AsyncResponse 
 
     @Override
     public void processFinish(List<String> result) {
-        parseJSON(result.get(result.size()-1));
+        if(HttpRequests.checkResponseCode(result))
+            parseJSON(result.get(result.size()-1));
+        else
+            Toast.makeText(this, getString(R.string.connectFailMessage), Toast.LENGTH_LONG).show();
     }
 
     private void parseJSON(String jsonString) {

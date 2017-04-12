@@ -154,7 +154,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     @Override
-    public void processFinish(List<String> result) { parseJSON(result.get(result.size()-1)); }
+    public void processFinish(List<String> result) {
+        if(HttpRequests.checkResponseCode(result))
+            parseJSON(result.get(result.size()-1));
+        else
+            Toast.makeText(this, getString(R.string.connectFailMessage), Toast.LENGTH_SHORT).show();
+    }
 
     private void launchSettings() {
         Intent intent = new Intent(this, SettingsActivity.class);
