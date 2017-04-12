@@ -145,6 +145,9 @@ public class TwoTempActivity extends AppCompatActivity implements AsyncResponse 
 
     private void postRequest() {
 
+        if(!dataValidation())
+            return;
+
         Integer lowSpeed = ((RangeBar) findViewById(R.id.rangeSpeed)).getLeftIndex();
         Integer highSpeed = ((RangeBar) findViewById(R.id.rangeSpeed)).getRightIndex();
         String lowTemp = ((EditText) findViewById(R.id.editLowTemp)).getText().toString();
@@ -164,5 +167,23 @@ public class TwoTempActivity extends AppCompatActivity implements AsyncResponse 
         http.delegate = this;
         http.onPreExecute(true, mode);
         http.execute(postOpURL);
+    }
+
+    private boolean dataValidation() {
+        try {
+            String str1 = ((EditText) findViewById(R.id.editLowTemp)).getText().toString();
+            String str2 = ((EditText) findViewById(R.id.editHighTemp)).getText().toString();
+
+            Integer int1 = HttpRequests.tryParseInt(str1);
+            Integer int2 = HttpRequests.tryParseInt(str2);
+
+            if (int1 == null || int2 == null)
+                throw new Exception();
+
+            return true;
+        } catch (Exception e) {
+            Toast.makeText(this, getString(R.string.oneTempDataValid), Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }

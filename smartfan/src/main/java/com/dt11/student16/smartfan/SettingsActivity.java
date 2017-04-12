@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -56,6 +57,9 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void saveSettings() {
+        if(!dataValidation())
+            return;
+
         String editIP = ((EditText) findViewById(R.id.textIP)).getText().toString();
         String storedIP = sharedPref.getString(getString(R.string.PK_IP), "N/A");
 
@@ -77,5 +81,23 @@ public class SettingsActivity extends AppCompatActivity {
 
         if(edit)
             editor.apply();
+    }
+
+    private boolean dataValidation() {
+        try {
+            String ipString = ((EditText) findViewById(R.id.textIP)).getText().toString();
+            String portString = ((EditText) findViewById(R.id.textPort)).getText().toString();
+
+            boolean validIP = HttpRequests.validate(ipString);
+            Integer int2 = HttpRequests.tryParseInt(portString);
+
+            if (!validIP || int2 == null)
+                throw new Exception();
+
+            return true;
+        } catch (Exception e) {
+            Toast.makeText(this, getString(R.string.settingsDataValid), Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }

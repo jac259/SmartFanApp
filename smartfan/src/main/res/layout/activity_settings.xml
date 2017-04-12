@@ -25,7 +25,44 @@
             android:text="@string/returnButton" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutButtonsTop"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:paddingTop="10dp">
+        <TextView
+            android:layout_columnWeight=".6"
+            android:layout_columnSpan="1"
+            android:layout_height="wrap_content"
+            android:text="@string/textIP"
+            android:textSize="@dimen/standard_text_size"/>
+        <TextView
+            android:layout_columnWeight=".4"
+            android:layout_columnSpan="1"
+            android:layout_height="wrap_content"
+            android:text="@string/textPort"
+            android:textSize="@dimen/standard_text_size"/>
+        <EditText
+            android:id="@+id/textIP"
+            android:hint="@string/hintIP"
+            android:layout_columnWeight=".6"
+            android:layout_columnSpan="1"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:digits="0123456789."/>
+        <EditText
+            android:id="@+id/textPort"
+            android:hint="@string/hintPort"
+            android:layout_columnWeight=".4"
+            android:layout_columnSpan="1"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:digits="0123456789."/>
+    </GridLayout>
+
+    <!--<RelativeLayout
         android:id="@+id/layoutIP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +110,7 @@
             android:hint="@string/hintPort"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <LinearLayout
         android:id="@+id/layoutButtons"

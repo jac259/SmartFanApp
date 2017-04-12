@@ -18,6 +18,7 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -193,10 +194,34 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
             if(string.contains("Response code:"))
                 responseCode = tryParseInt(string.substring(15));
 
-        return responseCode == 200;
+        return responseCode == HttpURLConnection.HTTP_OK;
+    }
+
+    private static final Pattern PATTERN = Pattern.compile(
+            "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+
+    public static boolean validate(final String ip) {
+        return PATTERN.matcher(ip).matches();
     }
 
     public boolean checkConnection(String strURL) {
+        try {
+            URL url = new URL(strURL);
+            HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
+            urlConn.setConnectTimeout(2000); //set timeout to 5 seconds
+            urlConn.connect();
+
+            assertEquals(HttpURLConnection.HTTP_OK, urlConn.getResponseCode());
+            return true;
+        } catch (SocketTimeoutException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public boolean checkConnection() {
+        String strURL = r.getString(R.string.url).concat(r.getString(R.string.getOp));
         try {
             URL url = new URL(strURL);
             HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
@@ -216,10 +241,11 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        if(!checkConnection(url)) {
-            results.add(r.getString(R.string.responseCode) + Integer.toString(con.getResponseCode()));
+        if(!checkConnection()) {
+            results.add(r.getString(R.string.responseCode) + Integer.toString(-1));
             return;
         }
+        con.setConnectTimeout(5000);
 
         // add request header
         con.setRequestMethod("POST");

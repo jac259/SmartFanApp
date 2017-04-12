@@ -25,9 +25,9 @@
 
     <!--Settings-->
     <string name="textIP">IP Address:</string>
-    <string name="hintIP">192.168.1.0</string>
+    <string name="hintIP">192.168.255.255</string>
     <string name="textPort">Port Number:</string>
-    <string name="hintPort">100</string>
+    <string name="hintPort">100        </string>
 
     <!--Preference Keys-->
     <string name="PREF_NAME">SmartFanPreferences</string>
@@ -156,6 +156,8 @@
                                     they may be re-enabled later.</string>
     <string name="connectFailMessage">Connection failed. Please check your Internet connections and
                                         try again.</string>
+    <string name="settingsDataValid">Please enter a valid IP address and port number.</string>
+    <string name="oneTempDataValid">Please enter a valid low and high temperature.</string>
     <string name="alertOverlap">Schedule overlaps</string>
     <string name="toastOverlap">Overlapping schedule(s) disabled.</string>
     <string name="disableSuccess">Disabled Successfully</string>
