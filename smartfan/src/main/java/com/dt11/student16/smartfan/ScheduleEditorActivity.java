@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -68,6 +70,9 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
     private int[] idArray;
     private boolean[] enabledArray;
 
+    private SharedPreferences sharedPref;
+    private boolean format12h = false;
+
     private List<Integer> overlapSchedules = new ArrayList<>();
 
     HttpRequests http;
@@ -78,6 +83,9 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
         setContentView(R.layout.activity_schedule_editor);
 
         getSupportActionBar().setTitle(getString(R.string.scheduleEditorTitle));
+
+        sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+        format12h = sharedPref.getBoolean(getString(R.string.PK_12h), false);
 
         context = getApplicationContext();
         activity = ScheduleEditorActivity.this;
@@ -100,10 +108,10 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
             edit = true;
 
             ((TextView) findViewById(R.id.textStartTime))
-                    .setText(bundle.getString(getString(R.string.begin_time)));
+                    .setText(HttpRequests.formatTime(bundle.getString(getString(R.string.begin_time)), format12h));
 
             ((TextView) findViewById(R.id.textEndTime))
-                    .setText(bundle.getString(getString(R.string.end_time)));
+                    .setText(HttpRequests.formatTime(bundle.getString(getString(R.string.end_time)), format12h));
 
             ((SeekBar) findViewById(R.id.seekSpeedSchedule))
                     .setProgress(bundle.getInt(getString(R.string.fan_speed)));
@@ -150,11 +158,18 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
                         ((CheckBox) findViewById(R.id.chkFri)).isChecked() ? 'Y' : 'N',
                         ((CheckBox) findViewById(R.id.chkSat)).isChecked() ? 'Y' : 'N'};
 
+                    String startTime = ((TextView) findViewById(R.id.textStartTime)).getText().toString();
+                    String endTime = ((TextView) findViewById(R.id.textEndTime)).getText().toString();
+                    if(format12h) {
+                        startTime = from12hTo24h(startTime);
+                        endTime = from12hTo24h(endTime);
+                    }
+
                     Schedule schedule = new Schedule(
                             edit ? scheduleId : maxId + 1,
                             (((SeekBar) findViewById(R.id.seekSpeedSchedule)).getProgress()),
-                            ((TextView) findViewById(R.id.textStartTime)).getText().toString(),
-                            ((TextView) findViewById(R.id.textEndTime)).getText().toString(),
+                            startTime,
+                            endTime,
                             ((RadioButton) findViewById(R.id.rdoCW)).isChecked() ?
                                 getString(R.string.clockwise) :
                                 getString(R.string.counterclockwise),
@@ -186,13 +201,42 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
             }
         });
 
-        createURL = getString(R.string.url).concat(getString(R.string.createSchedule));
-        deleteURL = getString(R.string.url).concat(getString(R.string.deleteSchedule));
-        updateURL = getString(R.string.url).concat(getString(R.string.updateSchedule));
-        toggleURL = getString(R.string.url).concat(getString(R.string.toggleSchedule));
-        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
+        String urlBase = "http://".concat(sharedPref.getString(getString(R.string.PK_IP), "N/A")).concat(":")
+                .concat(sharedPref.getString(getString(R.string.PK_Port), "N/A")).concat("/");
 
+        if(urlBase.contains("N/A"))
+            Toast.makeText(this, "Please enter an IP address and port number via the Settings menu.", Toast.LENGTH_LONG).show();
+
+        createURL = urlBase.concat(getString(R.string.createSchedule));
+        deleteURL = urlBase.concat(getString(R.string.deleteSchedule));
+        updateURL = urlBase.concat(getString(R.string.updateSchedule));
+        toggleURL = urlBase.concat(getString(R.string.toggleSchedule));
+        getOpURL = urlBase.concat(getString(R.string.getOp));
+        postOpURL = urlBase.concat(getString(R.string.postOp));
+
+//        createURL = getString(R.string.url).concat(getString(R.string.createSchedule));
+//        deleteURL = getString(R.string.url).concat(getString(R.string.deleteSchedule));
+//        updateURL = getString(R.string.url).concat(getString(R.string.updateSchedule));
+//        toggleURL = getString(R.string.url).concat(getString(R.string.toggleSchedule));
+//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
+//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
+
+    }
+
+    private String from12hTo24h(String time) {
+        Integer hrs = HttpRequests.tryParseInt(time.substring(0, 2));
+        boolean pm = time.contains("p");
+
+        if (!pm)
+            return time.substring(0, time.length());
+
+        hrs = hrs != 12 ? hrs + 12 : 0;
+        char[] timeChars = time.toCharArray();
+        char[] hrsChars = hrs.toString().toCharArray();
+        timeChars[0] = (hrs != 0 ? hrsChars[0] : '0');
+        timeChars[1] = (hrs != 0 ? hrsChars[1] : '0');
+        time = new String(timeChars);
+        return time.substring(0, time.length());
     }
 
     private void createRequest(Schedule schedule) {
@@ -263,7 +307,7 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
             timePicker.setCurrentMinute(cal.get(MINUTE));
         }
 
-        timePicker.setIs24HourView(true);
+        timePicker.setIs24HourView(!format12h);
 
         Button cancelButton = (Button) customView.findViewById(R.id.btnCancel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -296,10 +340,10 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
                 time = hours.concat(":").concat(minutes);
 
                 if(startOrEnd == getString(R.string.startText)) {
-                    ((TextView) layout.findViewById(R.id.textStartTime)).setText(time);
+                    ((TextView) layout.findViewById(R.id.textStartTime)).setText(HttpRequests.formatTime(time, format12h));
                 }
                 else if(startOrEnd == getString(R.string.endText)) {
-                    ((TextView) layout.findViewById(R.id.textEndTime)).setText(time);
+                    ((TextView) layout.findViewById(R.id.textEndTime)).setText(HttpRequests.formatTime(time, format12h));
                 }
 
                 popupWindow.dismiss();
@@ -326,8 +370,14 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
 
         // Check start time is before end time
         String dateFormat = getString(R.string.timeMilitaryNoSeconds);
-        Calendar startTime = parseDateString(textStart.getText().toString(), dateFormat);
-        Calendar endTime = parseDateString(textEnd.getText().toString(), dateFormat);
+        String st = textStart.getText().toString();
+        String et = textEnd.getText().toString();
+        if(format12h) {
+            st = from12hTo24h(st);
+            et = from12hTo24h(et);
+        }
+        Calendar startTime = parseDateString(st, dateFormat);
+        Calendar endTime = parseDateString(et, dateFormat);
         if(startTime.compareTo(endTime) >= 0) {
             if(!errorString.isEmpty())
                 errorString = errorString.concat("\n");

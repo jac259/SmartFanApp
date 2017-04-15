@@ -28,11 +28,15 @@
     <string name="hintIP">192.168.255.255</string>
     <string name="textPort">Port Number:</string>
     <string name="hintPort">100        </string>
+    <string name="textTime">Time Format:</string>
+    <string name="rdo24h">24-hour</string>
+    <string name="rdo12h">12-hour</string>
 
     <!--Preference Keys-->
     <string name="PREF_NAME">SmartFanPreferences</string>
     <string name="PK_IP">PK_IP</string>
     <string name="PK_Port">PK_Port</string>
+    <string name="PK_12h">PK_12h</string>
 
     <!--Main Activity-->
     <string name="tempDisplay">Temperature:</string>

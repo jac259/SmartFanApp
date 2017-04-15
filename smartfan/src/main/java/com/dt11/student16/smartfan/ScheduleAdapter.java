@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.Pair;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static android.view.View.TEXT_ALIGNMENT_GRAVITY;
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 
 public class ScheduleAdapter extends ArrayAdapter<Schedule> implements AsyncResponse {
@@ -41,12 +43,15 @@ public class ScheduleAdapter extends ArrayAdapter<Schedule> implements AsyncResp
     private String toggleURL;
     private Resources r;
 
-    public ScheduleAdapter(Context context, int layoutResourceId, ArrayList<Schedule> data) {
+    private boolean format12h;
+
+    public ScheduleAdapter(Context context, int layoutResourceId, ArrayList<Schedule> data, boolean _format12h) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.data = data;
         r = context.getResources();
+        format12h = _format12h;
     }
 
     public void removeItem(int position) {
@@ -74,6 +79,7 @@ public class ScheduleAdapter extends ArrayAdapter<Schedule> implements AsyncResp
             holder.seekSpeed = (SeekBar) row.findViewById(R.id.seekSpeedSchedule);
             holder.textStart = (TextView) row.findViewById(R.id.textStart);
             holder.textEnd = (TextView) row.findViewById(R.id.textEnd);
+            holder.textHyphen = (TextView) row.findViewById(R.id.textHyphen);
             holder.textDirection = (TextView) row.findViewById(R.id.textDirection);
             holder.textSunday = (TextView) row.findViewById(R.id.textSunday);
             holder.textMonday = (TextView) row.findViewById(R.id.textMonday);
@@ -109,8 +115,9 @@ public class ScheduleAdapter extends ArrayAdapter<Schedule> implements AsyncResp
         holder.seekSpeed.setFocusableInTouchMode(false);
 
         // load other properties into holder
-        holder.textStart.setText(schedule.startTime);
-        holder.textEnd.setText(schedule.endTime);
+        holder.textStart.setText(HttpRequests.formatTime(schedule.startTime, format12h));
+        holder.textEnd.setText(HttpRequests.formatTime(schedule.endTime, format12h));
+        holder.textHyphen.setGravity(format12h ? Gravity.CENTER : Gravity.START | Gravity.CENTER_HORIZONTAL);
         holder.textDirection.setText(schedule.direction);
         setDays(schedule.days, holder);
         holder.switchEnabled.setChecked(schedule.enabled);
@@ -237,6 +244,7 @@ public class ScheduleAdapter extends ArrayAdapter<Schedule> implements AsyncResp
         SeekBar seekSpeed;
         TextView textStart;
         TextView textEnd;
+        TextView textHyphen;
         TextView textDirection;
         TextView textSunday;
         TextView textMonday;

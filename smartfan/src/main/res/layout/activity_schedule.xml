@@ -54,7 +54,8 @@
         android:src="@drawable/ic_add_white_24px"
         android:layout_margin="4dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/textId"

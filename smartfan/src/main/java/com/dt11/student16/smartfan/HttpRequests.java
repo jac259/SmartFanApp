@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -204,7 +205,7 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
         return PATTERN.matcher(ip).matches();
     }
 
-    public boolean checkConnection(String strURL) {
+    public static boolean checkConnection(String strURL) {
         try {
             URL url = new URL(strURL);
             HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
@@ -234,6 +235,29 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
             return false;
         } catch (IOException e) {
             return false;
+        }
+    }
+
+    public static String formatTime(String time, boolean _12h) {
+        if (!_12h)
+            return time;
+
+        Integer hrs = tryParseInt(time.substring(0, 2));
+        if (hrs == null)
+            return time;
+        else {
+            boolean pm = hrs >= 12;
+            if(pm)
+                hrs -= 12;
+
+            if (hrs == 0)
+                hrs = 12;
+
+            char[] timeChars = time.toCharArray();
+            timeChars[0] = (char)((hrs > 9 ? 1 : 0) + 48);
+            timeChars[1] = (char)((hrs > 9 ? hrs - 10 : hrs) + 48);
+            time = new String(timeChars);
+            return time.concat(pm ? "p" : "a");
         }
     }
 

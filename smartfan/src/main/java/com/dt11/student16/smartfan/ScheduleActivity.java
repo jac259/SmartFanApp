@@ -58,6 +58,7 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
     private PopupWindow popupWindow;
 
     SharedPreferences sharedPref;
+    private boolean format12h = false;
 
     private int maxId = 0;
 
@@ -92,6 +93,7 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
         btnAddSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                if (HttpRequests.checkConnection(getURL))
                 launchEditor();
             }
         });
@@ -103,6 +105,8 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
 
         if(urlBase.contains("N/A"))
             Toast.makeText(this, "Please enter an IP address and port number via the Settings menu.", Toast.LENGTH_LONG).show();
+
+        format12h = sharedPref.getBoolean(getString(R.string.PK_12h), false);
 
         createURL = urlBase.concat(getString(R.string.createSchedule));
         deleteURL = urlBase.concat(getString(R.string.deleteSchedule));
@@ -271,13 +275,16 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
 
                 maxId = Math.max(maxId, schedule.id);
             }
+
+            FloatingActionButton btnAddSchedule = (FloatingActionButton) findViewById(R.id.btnAddSchedule);
+            btnAddSchedule.setVisibility(View.VISIBLE);
         }
         catch (Exception ex) {
             Log.e(TAG, ex.toString());
             return;
         }
 
-        adapter = new ScheduleAdapter(this, R.layout.listview_schedule_item, schedules);
+        adapter = new ScheduleAdapter(this, R.layout.listview_schedule_item, schedules, format12h);
 
         mainListView = (ListView) findViewById(R.id.listSchedules);
         mainListView.setAdapter(adapter);
