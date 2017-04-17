@@ -56,6 +56,13 @@
     <string name="oneTempTitle">One Temp Mode</string>
     <string name="twoTempTitle">Two Temp Mode</string>
 
+    <!--Activities-->
+    <string name="activityMain">Main</string>
+    <string name="activityManual">Manual</string>
+    <string name="activitySchedule">Schedule</string>
+    <string name="activityOneTemp">OneTemp</string>
+    <string name="activityTwoTemp">TwoTemp</string>
+
     <!--Main Post Params-->
     <string name="main_power">Power</string>
     <string name="main_mode">Mode</string>
@@ -134,6 +141,7 @@
     <string name="textFalse">false</string>
     <string name="degreesFahr">°F</string>
     <string name="degreesCels">°C</string>
+    <string name="settingsBundleParent">Parent</string>
 
     <!--Days-->
     <string name="sundayTwoLetter">Su</string>

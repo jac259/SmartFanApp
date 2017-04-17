@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -26,6 +29,32 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
     private String postOpURL;
 
     HttpRequests http;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actions, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.actionSettings:
+                // User chose the "Settings" item, show the app settings UI...
+                launchSettings(getString(R.string.activityManual));
+                return true;
+
+            case R.id.actionRefresh:
+                getRequest(getURL);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +205,15 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
         http.delegate = this;
         http.onPreExecute(true, mode);
         http.execute(postOpURL);
+    }
+
+    private void launchSettings(String parent) {
+        Bundle bundle = new Bundle();
+        bundle.putString(getString(R.string.settingsBundleParent), parent);
+
+        Intent intent = new Intent(this, SettingsActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
 

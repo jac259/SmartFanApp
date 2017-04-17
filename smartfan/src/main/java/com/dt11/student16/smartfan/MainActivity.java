@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         switch (item.getItemId()) {
             case R.id.actionSettings:
                 // User chose the "Settings" item, show the app settings UI...
-                launchSettings();
+                launchSettings(getString(R.string.activityMain));
                 return true;
 
             case R.id.actionRefresh:
@@ -161,10 +161,15 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             Toast.makeText(this, getString(R.string.connectFailMessage), Toast.LENGTH_SHORT).show();
     }
 
-    private void launchSettings() {
+    private void launchSettings(String parent) {
+        Bundle bundle = new Bundle();
+        bundle.putString(getString(R.string.settingsBundleParent), parent);
+
         Intent intent = new Intent(this, SettingsActivity.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
+
 
     private void launchManual() {
         Intent intent = new Intent(this, ManualActivity.class);

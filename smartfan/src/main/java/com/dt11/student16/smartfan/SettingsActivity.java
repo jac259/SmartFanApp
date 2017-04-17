@@ -14,18 +14,22 @@ import android.widget.Toast;
 public class SettingsActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPref;
+    private String parent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        Bundle bundle = getIntent().getExtras();
+        parent = bundle.getString(getString(R.string.settingsBundleParent));
+
         // Hook up return button
         Button btnReturn = (Button) findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchMain();
+                launchParent();
             }
         });
 
@@ -57,6 +61,26 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void launchMain() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0,0);
+    }
+
+    private void launchParent() {
+        Intent intent;
+        
+        if(parent.equals(getString(R.string.activityMain)))
+            intent = new Intent(this, MainActivity.class);
+        else if(parent.equals(getString(R.string.activityManual)))
+            intent = new Intent(this, ManualActivity.class);
+        else if(parent.equals(getString(R.string.activitySchedule)))
+            intent = new Intent(this, ScheduleActivity.class);
+        else if(parent.equals(getString(R.string.activityOneTemp)))
+            intent = new Intent(this, OneTempActivity.class);
+        else if(parent.equals(getString(R.string.activityTwoTemp)))
+            intent = new Intent(this, TwoTempActivity.class);
+        else
+            intent = new Intent(this, MainActivity.class);
+
         startActivity(intent);
         overridePendingTransition(0,0);
     }
