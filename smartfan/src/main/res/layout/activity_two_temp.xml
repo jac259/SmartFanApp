@@ -57,7 +57,7 @@
                 app:thumbRadius="0dp"
                 app:thumbColorNormal="@color/colorAccent"
                 app:thumbColorPressed="@color/colorAccentDark"
-                app:tickCount="47"
+                app:tickCount="50"
                 app:tickHeight="0dp"
                 app:barWeight="0dp"
                 app:connectingLineColor="@color/colorBackgroundRangeBar" />
@@ -70,7 +70,7 @@
                 app:thumbRadius="3dp"
                 app:thumbColorNormal="@color/colorAccent"
                 app:thumbColorPressed="@color/colorAccentDark"
-                app:tickCount="47"
+                app:tickCount="50"
                 app:tickHeight="0dp"
                 app:barWeight="0dp"
                 app:connectingLineColor="@color/colorAccent" />
