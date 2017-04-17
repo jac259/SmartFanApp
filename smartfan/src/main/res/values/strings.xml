@@ -45,16 +45,16 @@
     <string name="modeButtons">Edit parameters:</string>
     <string name="manualButton">Manual</string>
     <string name="scheduleButton">Schedule</string>
-    <string name="oneTempButton">One Temp</string>
-    <string name="twoTempButton">Two Temp</string>
+    <string name="oneTempButton">Temperature</string>
+    <string name="twoTempButton">Window</string>
     <string name="returnButton">Return</string>
 
     <!--Titles-->
     <string name="manualTitle">Manual Mode</string>
     <string name="scheduleTitle">Schedule Mode</string>
     <string name="scheduleEditorTitle">Schedule Editor</string>
-    <string name="oneTempTitle">One Temp Mode</string>
-    <string name="twoTempTitle">Two Temp Mode</string>
+    <string name="oneTempTitle">Temperature Mode</string>
+    <string name="twoTempTitle">Window Mode</string>
 
     <!--Activities-->
     <string name="activityMain">Main</string>

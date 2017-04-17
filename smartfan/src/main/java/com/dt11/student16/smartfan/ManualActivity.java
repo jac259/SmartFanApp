@@ -47,6 +47,7 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
 
             case R.id.actionRefresh:
                 getRequest(getURL);
+                getRequest(getOpURL);
                 return true;
 
             default:
