@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private static final String TAG = "SettingsActivity";
+
     private SharedPreferences sharedPref;
     private String parent;
 
@@ -20,6 +23,14 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        // Change activity title
+        try {
+            getSupportActionBar().setTitle(getString(R.string.settingsTitle));
+        }
+        catch (Exception ex) {
+            Log.e(TAG, ex.toString());
+        }
 
         Bundle bundle = getIntent().getExtras();
         parent = bundle.getString(getString(R.string.settingsBundleParent));

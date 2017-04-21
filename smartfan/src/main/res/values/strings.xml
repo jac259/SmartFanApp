@@ -55,6 +55,7 @@
     <string name="scheduleEditorTitle">Schedule Editor</string>
     <string name="oneTempTitle">Temperature Mode</string>
     <string name="twoTempTitle">Window Mode</string>
+    <string name="settingsTitle">Settings</string>
 
     <!--Activities-->
     <string name="activityMain">Main</string>
