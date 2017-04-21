@@ -1,6 +1,8 @@
 package com.dt11.student16.smartfan;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +29,8 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
     private String postURL;
     private String getOpURL;
     private String postOpURL;
+
+    private SharedPreferences sharedPref;
 
     HttpRequests http;
 
@@ -70,11 +74,24 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
             Log.e(TAG, ex.toString());
         }
 
-        // Load URLs
-        getURL = getString(R.string.url).concat(getString(R.string.getManual));
-        postURL = getString(R.string.url).concat(getString(R.string.postManual));
-        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
+//        // Load URLs
+//        getURL = getString(R.string.url).concat(getString(R.string.getManual));
+//        postURL = getString(R.string.url).concat(getString(R.string.postManual));
+//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
+//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
+
+        sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+
+        String urlBase = "http://".concat(sharedPref.getString(getString(R.string.PK_IP), "N/A")).concat(":")
+                .concat(sharedPref.getString(getString(R.string.PK_Port), "N/A")).concat("/");
+
+        if(urlBase.contains("N/A"))
+            Toast.makeText(this, "Please enter an IP address and port number via the Settings menu.", Toast.LENGTH_LONG).show();
+
+        getURL = urlBase.concat(getString(R.string.getManual));
+        postURL = urlBase.concat(getString(R.string.postManual));
+        getOpURL = urlBase.concat(getString(R.string.getOp));
+        postOpURL = urlBase.concat(getString(R.string.postOp));
 
         // Load fields
         getRequest(getURL);

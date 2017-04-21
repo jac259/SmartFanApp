@@ -83,7 +83,7 @@
 
     <GridLayout
         android:id="@+id/layoutButtons"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/layoutPower"
@@ -96,7 +96,7 @@
             android:layout_rowSpan="1"
             android:layout_rowWeight="1"
             android:layout_columnSpan="2"
-            android:layout_columnWeight="1"
+            android:layout_columnWeight="2"
             android:layout_height="wrap_content"
             android:text="@string/modeButtons"
             android:gravity="center"
@@ -104,37 +104,41 @@
         <Button
             android:id="@+id/btnManual"
             android:layout_rowSpan="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
+            android:layout_rowWeight=".5"
+            android:layout_columnWeight=".5"
             android:layout_columnSpan="1"
-            android:width="@dimen/button_width_main"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/manualButton" />
         <Button
             android:id="@+id/btnSchedule"
             android:layout_rowSpan="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
+            android:layout_rowWeight=".5"
+            android:layout_columnWeight=".5"
             android:layout_columnSpan="1"
-            android:width="@dimen/button_width_main"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/scheduleButton" />
         <Button
             android:id="@+id/btnOneTemp"
             android:layout_rowSpan="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
+            android:layout_rowWeight=".5"
+            android:layout_columnWeight=".5"
             android:layout_columnSpan="1"
-            android:width="@dimen/button_width_main"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/oneTempButton" />
         <Button
             android:id="@+id/btnTwoTemp"
             android:layout_rowSpan="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
+            android:layout_rowWeight=".5"
+            android:layout_columnWeight=".5"
             android:layout_columnSpan="1"
-            android:width="@dimen/button_width_main"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/twoTempButton" />
     </GridLayout>

@@ -1,6 +1,7 @@
 package com.dt11.student16.smartfan;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -33,6 +34,9 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
     private List<Pair<String, String>> Params = new ArrayList<>();
     private Context context;
     private Resources r;
+
+    private SharedPreferences sharedPref;
+    private String GetOP;
 
     public HttpRequests(Context current) {
         this.context = current;
@@ -222,7 +226,18 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
     }
 
     public boolean checkConnection() {
-        String strURL = r.getString(R.string.url).concat(r.getString(R.string.getOp));
+        //String strURL = r.getString(R.string.url).concat(r.getString(R.string.getOp));
+        sharedPref = context.getSharedPreferences(r.getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+
+
+        String urlBase = "http://".concat(sharedPref.getString(r.getString(R.string.PK_IP), "N/A")).concat(":")
+                .concat(sharedPref.getString(r.getString(R.string.PK_Port), "N/A")).concat("/");
+
+        if(urlBase.contains("N/A"))
+            Toast.makeText(context, "Please enter an IP address and port number via the Settings menu.", Toast.LENGTH_LONG).show();
+
+        String strURL = urlBase.concat(r.getString(R.string.getManual));
+
         try {
             URL url = new URL(strURL);
             HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
