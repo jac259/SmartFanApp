@@ -74,12 +74,7 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
             Log.e(TAG, ex.toString());
         }
 
-//        // Load URLs
-//        getURL = getString(R.string.url).concat(getString(R.string.getManual));
-//        postURL = getString(R.string.url).concat(getString(R.string.postManual));
-//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
-
+        // Load URLs
         sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
 
         String urlBase = "http://".concat(sharedPref.getString(getString(R.string.PK_IP), "N/A")).concat(":")
@@ -152,7 +147,6 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
 
                 // set RPM
                 rpmSpeed.speedTo(Float.parseFloat(json.getString(getString(R.string.RPM))));
-                //seekRPM.setProgress(Math.round(Integer.parseInt(json.getString(getString(R.string.RPM)))));
             }
             else {
                 SeekBar oneSpeed = (SeekBar) findViewById(R.id.seekSpeed);
@@ -178,21 +172,7 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
 
     }
 
-    private void moveRPM() {
-//        long startTime = System.currentTimeMillis(); //fetch starting time
-//        int seconds = 5;
-//        while(System.currentTimeMillis() - startTime < seconds*1000)
-//        {
-//            getRequest(getOpURL);
-//            long loopTime = System.currentTimeMillis();
-//            while(System.currentTimeMillis() - loopTime < 1000) {
-//                // request every half second
-//            }
-//        }
-    }
-
     private void getRequest(String url) {
-
         http = new HttpRequests(this);
         http.delegate = this;
         http.onPreExecute(false);
@@ -201,7 +181,6 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     private void postRequest() {
-
         Boolean forward = ((RadioButton) findViewById(R.id.rdoCW)).isChecked();
         Integer oneSpeed = Math.round(((SeekBar) findViewById(R.id.seekSpeed)).getProgress());
         String direction = getString(R.string.clockwise);
@@ -216,7 +195,6 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     private void setMode() {
-
         String mode = getString(R.string.manualMode);
 
         http = new HttpRequests(this);
@@ -234,4 +212,3 @@ public class ManualActivity extends AppCompatActivity implements AsyncResponse {
         startActivity(intent);
     }
 }
-

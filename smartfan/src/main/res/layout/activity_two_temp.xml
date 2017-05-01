@@ -143,43 +143,6 @@
                 android:layout_gravity="start"
                 android:gravity="center"/>
         </GridLayout>
-        <!--<LinearLayout
-            android:id="@+id/layoutTempRange"
-            android:layout_width="match_parent"
-            android:paddingStart="10dp"
-            android:paddingEnd="0dp">
-            <TextView
-                android:id="@+id/textLowTemp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/hintLowTemp"
-                android:textSize="@dimen/standard_text_size"/>
-            <EditText
-                android:id="@+id/editLowTemp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:inputType="number"
-                android:textSize="@dimen/standard_text_size"/>
-        </LinearLayout>-->
-        <!--
-        <LinearLayout>
-            <TextView
-                android:id="@+id/textHighTemp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/hintHighTemp"
-                android:textSize="@dimen/standard_text_size"/>
-            <EditText
-                android:id="@+id/editHighTemp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:inputType="number"
-                android:textSize="@dimen/standard_text_size"/>
-        </LinearLayout>-->
 
     </GridLayout>
 

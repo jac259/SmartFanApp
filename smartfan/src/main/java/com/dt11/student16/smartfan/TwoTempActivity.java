@@ -86,10 +86,6 @@ public class TwoTempActivity extends AppCompatActivity implements AsyncResponse 
         postURL = urlBase.concat(getString(R.string.postTwoTemp));
         getOpURL = urlBase.concat(getString(R.string.getOp));
         postOpURL = urlBase.concat(getString(R.string.postOp));
-//        getURL = getString(R.string.url).concat(getString(R.string.getTwoTemp));
-//        postURL = getString(R.string.url).concat(getString(R.string.postTwoTemp));
-//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
 
         // Load fields
         getRequest(getURL);

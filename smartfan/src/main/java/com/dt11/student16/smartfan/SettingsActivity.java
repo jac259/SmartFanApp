@@ -67,7 +67,6 @@ public class SettingsActivity extends AppCompatActivity {
             textPort.setText(ipPort);
 
         rdo12h.setChecked(format12h);
-
     }
 
     private void launchMain() {

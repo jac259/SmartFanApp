@@ -27,7 +27,6 @@ public class OneTempActivity extends AppCompatActivity implements AsyncResponse 
 
     private String getURL;
     private String postURL;
-    private String getOpURL;
     private String postOpURL;
 
     private SharedPreferences sharedPref;
@@ -84,12 +83,7 @@ public class OneTempActivity extends AppCompatActivity implements AsyncResponse 
         // Load URLs
         getURL = urlBase.concat(getString(R.string.getOneTemp));
         postURL = urlBase.concat(getString(R.string.postOneTemp));
-        getOpURL = urlBase.concat(getString(R.string.getOp));
         postOpURL = urlBase.concat(getString(R.string.postOp));
-//        getURL = getString(R.string.url).concat(getString(R.string.getOneTemp));
-//        postURL = getString(R.string.url).concat(getString(R.string.postOneTemp));
-//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
 
         // Load fields
         getRequest(getURL);
@@ -170,7 +164,6 @@ public class OneTempActivity extends AppCompatActivity implements AsyncResponse 
         catch (Exception ex) {
             Log.e(TAG, ex.toString());
         }
-
     }
 
 

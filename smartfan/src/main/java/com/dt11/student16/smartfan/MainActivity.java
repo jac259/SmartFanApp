@@ -76,10 +76,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-//        getTempURL = getString(R.string.url).concat(getString(R.string.getTemp));
-//        postPowerURL = getString(R.string.url).concat(getString(R.string.postPower));
-
         sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
 
         String urlBase = "http://".concat(sharedPref.getString(getString(R.string.PK_IP), "N/A")).concat(":")
@@ -101,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         Button btnTwoTemp = (Button) findViewById(R.id.btnTwoTemp);
         final FrameLayout layoutPower = (FrameLayout) findViewById(R.id.layoutPower);
         final ImageButton imgBtnPower = (ImageButton) findViewById(R.id.imgBtnPower);
-        //final ImageButton imgBtnRefresh = (ImageButton) findViewById(R.id.imgBtnRefresh);
 
         btnManual.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,14 +136,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             }
         });
 
-//        imgBtnRefresh.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getRequest(getOpURL);
-//                getRequest(getTempURL);
-//            }
-//        });
-
         imgBtnPower.setColorFilter(ContextCompat.getColor(context, powerState ? R.color.colorAccent : R.color.colorPrimaryLight));
         imgBtnPower.refreshDrawableState();
     }
@@ -173,25 +160,21 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
     private void launchManual() {
         Intent intent = new Intent(this, ManualActivity.class);
-        //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         startActivity(intent);
     }
 
     private void launchSchedule() {
         Intent intent = new Intent(this, ScheduleActivity.class);
-        //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         startActivity(intent);
     }
 
     private void launchOneTemp() {
         Intent intent = new Intent(this, OneTempActivity.class);
-        //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         startActivity(intent);
     }
 
     private void launchTwoTemp() {
         Intent intent = new Intent(this, TwoTempActivity.class);
-        //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         startActivity(intent);
     }
 

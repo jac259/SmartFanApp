@@ -163,14 +163,4 @@
         android:layout_alignParentBottom="true"
         android:text="@string/btnSave">
     </Button>
-
-    <!--<TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timeStart"
-        android:timePickerMode="clock">
-    </TimePicker>-->
-
-    <!--Schedule_Id, Begin_Time, End_Time, Direction, Fan_Speed, Day, Enabled-->
-
 </RelativeLayout>

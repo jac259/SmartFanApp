@@ -2,6 +2,7 @@ package com.dt11.student16.smartfan;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -31,6 +32,8 @@ import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 public class ScheduleAdapter extends ArrayAdapter<Schedule> implements AsyncResponse {
 
     private static final String TAG = "ScheduleAdapter";
+
+    SharedPreferences sharedPref;
 
     Context context;
     int layoutResourceId;
@@ -69,8 +72,16 @@ public class ScheduleAdapter extends ArrayAdapter<Schedule> implements AsyncResp
         View row = convertView;
         holder = row == null ? new ScheduleHolder() : (ScheduleHolder) row.getTag();
 
-        updateURL = r.getString(R.string.url).concat(r.getString(R.string.updateSchedule));
-        toggleURL = r.getString(R.string.url).concat(r.getString(R.string.toggleSchedule));
+        sharedPref = context.getSharedPreferences(r.getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+
+        String urlBase = "http://".concat(sharedPref.getString(r.getString(R.string.PK_IP), "N/A")).concat(":")
+                .concat(sharedPref.getString(r.getString(R.string.PK_Port), "N/A")).concat("/");
+
+        if(urlBase.contains("N/A"))
+            Toast.makeText(context, "Please enter an IP address and port number via the Settings menu.", Toast.LENGTH_LONG).show();
+
+        updateURL = urlBase.concat(r.getString(R.string.updateSchedule));
+        toggleURL = urlBase.concat(r.getString(R.string.toggleSchedule));
 
         if(row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();

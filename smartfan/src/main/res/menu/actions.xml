@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_refresh_white_36px"
         android:title="@string/actionRefresh"
         app:showAsAction="ifRoom"/>
-
+    
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/actionSettings"
         android:title="@string/actionSettings"

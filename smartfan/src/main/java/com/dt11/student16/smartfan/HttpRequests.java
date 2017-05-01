@@ -18,7 +18,6 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -46,7 +45,7 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
     @Override
     protected List<String> doInBackground(String... args) {
 
-        List<String> results = new ArrayList<String>();
+        List<String> results = new ArrayList<>();
         for (String s : args) {
 
             try {
@@ -213,7 +212,7 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
         try {
             URL url = new URL(strURL);
             HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
-            urlConn.setConnectTimeout(2000); //set timeout to 5 seconds
+            urlConn.setConnectTimeout(2000); //set timeout to 2 seconds
             urlConn.connect();
 
             assertEquals(HttpURLConnection.HTTP_OK, urlConn.getResponseCode());
@@ -226,7 +225,6 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
     }
 
     public boolean checkConnection() {
-        //String strURL = r.getString(R.string.url).concat(r.getString(R.string.getOp));
         sharedPref = context.getSharedPreferences(r.getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
 
 
@@ -241,7 +239,7 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
         try {
             URL url = new URL(strURL);
             HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
-            urlConn.setConnectTimeout(2000); //set timeout to 5 seconds
+            urlConn.setConnectTimeout(2000); //set timeout to 2 seconds
             urlConn.connect();
 
             assertEquals(HttpURLConnection.HTTP_OK, urlConn.getResponseCode());
@@ -334,7 +332,5 @@ public class HttpRequests extends AsyncTask<String, Void, List<String>> {
 
         return data;
     }
-
-
 }
 

@@ -104,56 +104,6 @@
         </RadioGroup>
     </GridLayout>
 
-    <!--<RelativeLayout
-        android:id="@+id/layoutIP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutButtonsTop"
-        android:paddingTop="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/textIP"
-            android:textSize="@dimen/standard_text_size"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/layoutEditIP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutIP">
-        <EditText
-            android:id="@+id/textIP"
-            android:hint="@string/hintIP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/layoutPort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutEditIP"
-        android:paddingTop="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/textPort"
-            android:textSize="@dimen/standard_text_size"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/layoutEditPort"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutPort">
-        <EditText
-            android:id="@+id/textPort"
-            android:hint="@string/hintPort"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>-->
-
     <LinearLayout
         android:id="@+id/layoutButtons"
         android:layout_width="match_parent"
@@ -166,5 +116,4 @@
             android:layout_height="wrap_content"
             android:text="@string/btnSave" />
     </LinearLayout>
-
 </RelativeLayout>

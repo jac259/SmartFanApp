@@ -1,7 +1,5 @@
 package com.dt11.student16.smartfan;
 
-import android.widget.SeekBar;
-
 public class Schedule {
     public int id;
     public int speed;

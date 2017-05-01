@@ -43,11 +43,9 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
 
     private static final String TAG = "ScheduleActivity";
 
-    private String createURL;
     private String deleteURL;
     private String getURL;
     private String toggleURL;
-    private String getOpURL;
     private String postOpURL;
 
     HttpRequests http;
@@ -122,7 +120,6 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
         btnAddSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (HttpRequests.checkConnection(getURL))
                 launchEditor();
             }
         });
@@ -137,19 +134,10 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
 
         format12h = sharedPref.getBoolean(getString(R.string.PK_12h), false);
 
-        createURL = urlBase.concat(getString(R.string.createSchedule));
         deleteURL = urlBase.concat(getString(R.string.deleteSchedule));
         getURL = urlBase.concat(getString(R.string.getSchedule));
         toggleURL = urlBase.concat(getString(R.string.toggleSchedule));
-        getOpURL = urlBase.concat(getString(R.string.getOp));
         postOpURL = urlBase.concat(getString(R.string.postOp));
-
-//        createURL = getString(R.string.url).concat(getString(R.string.createSchedule));
-//        deleteURL = getString(R.string.url).concat(getString(R.string.deleteSchedule));
-//        getURL = getString(R.string.url).concat(getString(R.string.getSchedule));
-//        toggleURL = getString(R.string.url).concat(getString(R.string.toggleSchedule));
-//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
 
         getRequest(getURL);
 
@@ -322,7 +310,6 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
 
-                //ScheduleAdapter.ScheduleHolder schedule = (ScheduleAdapter.ScheduleHolder) adapterView.getItemAtPosition(pos);
                 Schedule schedule = (Schedule) adapterView.getItemAtPosition(pos);
                 launchEditor(schedule);
             }
@@ -373,7 +360,6 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
     }
 
     private void getRequest(String url) {
-
         http = new HttpRequests(this);
         http.delegate = this;
         http.onPreExecute(false);
@@ -381,7 +367,6 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
     }
 
     private void deleteRequest(int schedule_id) {
-
         http = new HttpRequests(this);
         http.delegate = this;
         http.onPreExecute(true, schedule_id);
@@ -389,7 +374,6 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
     }
 
     private void toggleRequest(int schedule_id, String toggleState) {
-
         http = new HttpRequests(this);
         http.delegate = this;
         http.onPreExecute(true, schedule_id, toggleState);
@@ -425,7 +409,6 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
     }
 
     private void setMode() {
-
         String mode = getString(R.string.scheduleMode);
 
         http = new HttpRequests(this);
@@ -442,5 +425,4 @@ public class ScheduleActivity extends AppCompatActivity implements AsyncResponse
         intent.putExtras(bundle);
         startActivity(intent);
     }
-
 }

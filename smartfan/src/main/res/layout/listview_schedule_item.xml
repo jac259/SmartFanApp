@@ -8,6 +8,7 @@
     android:paddingTop="10dp"
     android:paddingBottom="20dp"
     android:descendantFocusability="blocksDescendants">
+
     <TextView
         android:id="@+id/textID"
         android:visibility="gone"/>

@@ -27,5 +27,4 @@
             android:gravity="center_vertical|start"
             android:background="@android:color/transparent"/>
     </LinearLayout>
-
 </RelativeLayout>

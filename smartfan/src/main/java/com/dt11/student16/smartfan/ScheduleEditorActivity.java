@@ -51,9 +51,6 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
     private String deleteURL;
     private String updateURL;
     private String toggleURL;
-    private String getURL;
-    private String getOpURL;
-    private String postOpURL;
 
     private Context context;
     private Activity activity;
@@ -122,7 +119,6 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
             else
                 ((RadioButton) findViewById(R.id.rdoCCW)).setChecked(true);
 
-
             boolean[] days = bundle.getBooleanArray(getString(R.string.day));
             ((CheckBox) findViewById(R.id.chkSun)).setChecked(days[0]);
             ((CheckBox) findViewById(R.id.chkMon)).setChecked(days[1]);
@@ -132,7 +128,6 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
             ((CheckBox) findViewById(R.id.chkFri)).setChecked(days[5]);
             ((CheckBox) findViewById(R.id.chkSat)).setChecked(days[6]);
         }
-
 
         final Button btnReturn = (Button) findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +175,6 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
                         overlapDialog(schedule);
                     else
                         updateRequest(schedule);
-
                 }
             }
         });
@@ -211,16 +205,6 @@ public class ScheduleEditorActivity extends AppCompatActivity implements AsyncRe
         deleteURL = urlBase.concat(getString(R.string.deleteSchedule));
         updateURL = urlBase.concat(getString(R.string.updateSchedule));
         toggleURL = urlBase.concat(getString(R.string.toggleSchedule));
-        getOpURL = urlBase.concat(getString(R.string.getOp));
-        postOpURL = urlBase.concat(getString(R.string.postOp));
-
-//        createURL = getString(R.string.url).concat(getString(R.string.createSchedule));
-//        deleteURL = getString(R.string.url).concat(getString(R.string.deleteSchedule));
-//        updateURL = getString(R.string.url).concat(getString(R.string.updateSchedule));
-//        toggleURL = getString(R.string.url).concat(getString(R.string.toggleSchedule));
-//        getOpURL = getString(R.string.url).concat(getString(R.string.getOp));
-//        postOpURL = getString(R.string.url).concat(getString(R.string.postOp));
-
     }
 
     private String from12hTo24h(String time) {

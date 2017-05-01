@@ -93,10 +93,8 @@
 
         <com.github.anastr.speedviewlib.SpeedView
             android:id="@+id/speedView"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            app:sv_startDegree="180"
-            app:sv_endDegree="360"
             app:sv_maxSpeed="1200"
             app:sv_unit="RPM"
             app:sv_unitUnderSpeedText="true"
@@ -109,8 +107,8 @@
             app:sv_trembleDegree="2"
             app:sv_trembleDuration="2000"
             android:layout_gravity="top|center"
-            app:sv_speedTextPosition="CENTER"
-            app:sv_speedometerMode="TOP"
+            app:sv_speedTextPosition="BOTTOM_CENTER"
+            app:sv_speedometerMode="NORMAL"
             app:sv_indicator="NormalIndicator"/>
 
     </GridLayout>
@@ -127,7 +125,5 @@
             android:layout_height="wrap_content"
             android:text="@string/btnSave" />
     </LinearLayout>
-
-
 
 </RelativeLayout>
